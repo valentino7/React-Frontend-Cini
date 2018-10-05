@@ -1,0 +1,6 @@
+{
+  "name": "ControlCreateIntersection",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./ControlIntersection.js"
+}
