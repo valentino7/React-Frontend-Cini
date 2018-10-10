@@ -67,14 +67,14 @@ class CustomPagination extends React.Component {
     let cutFirst = false;
     let cutLast = false;
     for (let i = 1; i <= numPages; i++) {
-      if (i <= currentPage - 3) {
+      if (i <= currentPage - 5) {
         if (!cutFirst) {
             paginationItems.push(
                 <b style={{color: '#20a8d8', marginLeft: "5px", marginRight: "5px", fontSize: '20px'}}>...</b>
             );
             cutFirst = true;
         }
-      } else if (i >= currentPage + 3) {
+      } else if (i >= currentPage + 5) {
         if (!cutLast) {
           paginationItems.push(
               <b style={{color: '#20a8d8', marginLeft: "5px", marginRight: "5px", fontSize: '20px'}}>...</b>

@@ -26,12 +26,18 @@ const Intersection = Loadable({
   loading: Loading,
 });
 
+const Query1 = Loadable({
+    loader: () => import('./_containers/QueryContainer/QueryContainer'),
+    loading: Loading,
+});
+
 
 const routes = [
   { path: '/', exact: true, name: 'Home', component: DefaultLayout },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/intersection/CreateIntersection', name: 'Create target', component: CreateIntersection },
   { path: '/intersection/ListIntersection', ecxactname: 'Show intersections', component: Intersection },
+    { path: '/QueryContainer/QueryContainer', ecxactname: 'Query1', component: Query1 },
 
 ];
 

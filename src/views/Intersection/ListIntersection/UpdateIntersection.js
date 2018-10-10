@@ -27,7 +27,7 @@ class UpdateIntersection extends Component {
     };
     this.onChange = this.onChange.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
-      this.initList = this.initList.bind(this);
+     // this.initList = this.initList.bind(this);
 
      // this.initList();
   }
@@ -38,23 +38,23 @@ class UpdateIntersection extends Component {
     });
   };
 
-    initList(){
+   /* initList(){
 
-        this.state.intersection["semaphoreList"]=[];
+        this.state.intersection["sensorList"]=[];
+        //this.setState({[this.state.intersection["semaphoreList"]]:[]});
+
         for ( let i = 0 ; i< 4 ; i++){
-            this.state.intersection["semaphoreList"][i]={"red":""};
-            this.state.intersection["semaphoreList"][i]={"longitudine":""};
-            this.state.intersection["semaphoreList"][i]={"latitudine":""};
-            this.state.intersection["semaphoreList"][i]={"saturation":""};
-            this.state.intersection["semaphoreList"][i]={"green":""};
+            this.state.intersection["sensorList"][i]={"longitudine":""};
+            this.state.intersection["sensorList"][i]={"latitudine":""};
+            this.state.intersection["sensorList"][i]={"saturation":""};
         }
         this.setState(this.state)
         //this.state.intersection["semaphor"]=[{"red":""}];
         /* this.state.ticket["sem"] = {
              "red" : "",
          };*/
-        //console.log(this.state.intersection["red"]);
-    }
+        //console.log(this.state.intersection["red"]);*/
+    //}
 
 
   handleUpdate = (e) => {
@@ -66,29 +66,26 @@ class UpdateIntersection extends Component {
   };
 
     componentDidMount() {
-        this.state.intersection["semaphoreList"]=[];
-        this.state.intersection["id"]="";
+        //this.state.intersection["sensorList"]=[];
+        this.setState({intersection: this.props.intersection });
+       /* this.state.intersection["trafficLight"]="";
         for ( let i = 0 ; i< 4 ; i++){
-            this.state.intersection["semaphoreList"][i]={"red":""};
-            this.state.intersection["semaphoreList"][i]={"longitude":""};
-            this.state.intersection["semaphoreList"][i]={"latitude":""};
-            this.state.intersection["semaphoreList"][i]={"saturation":""};
-            this.state.intersection["semaphoreList"][i]={"green":""};
+            this.state.intersection["sensorList"][i]={"longitude":""};
+            this.state.intersection["sensorList"][i]={"latitude":""};
+            this.state.intersection["sensorList"][i]={"saturation":""};
         }
         this.state.intersection["id"]=this.props.intersection["id"];
         for ( let i = 0 ; i< 4 ; i++){
-            this.state.intersection["semaphoreList"][i]["red"]=this.props.intersection["semaphoreList"][i]["red"];
-            this.state.intersection["semaphoreList"][i]["longitude"]=this.props.intersection["semaphoreList"][i]["longitude"];
-            this.state.intersection["semaphoreList"][i]["latitude"]=this.props.intersection["semaphoreList"][i]["latitude"];
-            this.state.intersection["semaphoreList"][i]["saturation"]=this.props.intersection["semaphoreList"][i]["saturation"];
-            this.state.intersection["semaphoreList"][i]["green"]=this.props.intersection["semaphoreList"][i]["green"];
+            this.state.intersection["sensorList"][i]["longitude"]=this.props.intersection["sensorList"][i]["longitude"];
+            this.state.intersection["sensorList"][i]["latitude"]=this.props.intersection["sensorList"][i]["latitude"];
+            this.state.intersection["sensorList"][i]["saturation"]=this.props.intersection["sensorList"][i]["saturation"];
         }
-        this.setState(this.state);
+        this.setState(this.state);*/
     }
 
 
     onChange(i,evt) {
-        this.state.intersection["semaphoreList"][i][evt.target.name]= evt.target.value;
+        this.state.intersection["sensorList"][i][evt.target.name]= evt.target.value;
         this.setState(this.state);
     }
 

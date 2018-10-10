@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import CreateIntersection from "../AddIntersection";
 import {
-  Button,
-  Card,
-  CardFooter,
-  CardHeader,
-  Col,
-  Form,
+    Button,
+    CardBody,
+    Card,
+    FormGroup,
+    Label,
+    Input,
+    CardFooter,
+    CardHeader,
+    Col,
+    Form,
 } from 'reactstrap';
 import { URL_GET_ADDS_FIELDS,URL_CREATE_INTERSECTION} from '../../../_constants/configurationConstants';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
@@ -29,7 +33,7 @@ class ControlIntersection extends Component{
         typology : [],
         typId : "",
     };
-
+    this.phases = this.phases.bind(this);
     this.onChange = this.onChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.createNotification = this.createNotification.bind(this);
@@ -42,18 +46,22 @@ class ControlIntersection extends Component{
   }
 
     initList(){
-        this.state.intersection["semaphoreList"]=[];
+        this.state.intersection["sensorList"]=[];
+        this.state.intersection["listPhase"]=[];
+
         for ( let i = 0 ; i< 4 ; i++){
-            this.state.intersection["semaphoreList"][i]={"idSem":""};
-            this.state.intersection["semaphoreList"][i]={"red":""};
-            this.state.intersection["semaphoreList"][i]={"longitude":""};
-            this.state.intersection["semaphoreList"][i]={"latitude":""};
-            this.state.intersection["semaphoreList"][i]={"saturation":""};
-            this.state.intersection["semaphoreList"][i]={"green":""};
+            this.state.intersection["sensorList"][i]={"trafficLight":""};
+            this.state.intersection["sensorList"][i]={"longitude":""};
+            this.state.intersection["sensorList"][i]={"latitude":""};
+            this.state.intersection["sensorList"][i]={"saturation":""};
         }
         for ( let i = 0 ; i< 4 ; i++)
-            this.state.intersection["semaphoreList"][i]={"idSem":i};
+            this.state.intersection["sensorList"][i]={"trafficLight":i};
 
+        for ( let i = 0 ; i< 4 ; i++) {
+            this.state.intersection["listPhase"][i] = {"redTime": ""};
+            this.state.intersection["listPhase"][i] = {"greenTime": ""};
+        }
         this.setState(this.state)
         //this.state.intersection["semaphor"]=[{"red":""}];
        /* this.state.ticket["sem"] = {
@@ -78,7 +86,7 @@ class ControlIntersection extends Component{
   handleClick(e){
     e.preventDefault();
     console.log("SUBMIT");
-    console.log(this.state.intersection["semaphoreList"][0]);
+    console.log(this.state.intersection["sensorList"][0]);
     fetch(URL_CREATE_INTERSECTION, {
       method: 'POST',
       headers: {
@@ -122,7 +130,7 @@ class ControlIntersection extends Component{
       };*/
       //this.setState(this.state.intersection["semaphor"][i]["red"], e );
 
-      this.state.intersection["semaphoreList"][i][evt.target.name]= evt.target.value;
+      this.state.intersection["sensorList"][i][evt.target.name]= evt.target.value;
       this.setState(this.state);
 
   }
@@ -134,6 +142,43 @@ class ControlIntersection extends Component{
     else
       document.getElementById("card-target").style.display = "none";
   }
+
+
+    phases(){
+        return (<CardBody>
+            <p style={{"font-size":'150%'}} align="center"><b>Phase 0</b></p>
+            <FormGroup row>
+                <Col>
+                    <Label>Red time</Label>
+                    <Input type="number" value={this.state.intersection["listPhase"][0]["redTime"]}  onChange={this.handleChange} required   />
+
+                </Col>
+                <Col>
+                    <Label>Green time</Label>
+                    <Input type="number" value={this.state.intersection["listPhase"][0]["greenTime"]} onChange={this.handleChange} required   />
+
+                </Col>
+            </FormGroup>
+            <hr/>
+            <p style={{"font-size":'150%'}} align="center"><b>Phase 1</b></p>
+
+            <FormGroup row>
+                <Col>
+                    <Label>Red time</Label>
+                    <Input type="number" value={this.state.intersection["listPhase"][1]["redTime"]}  onChange={this.handleChange} required  />
+
+                </Col>
+                <Col>
+                    <Label>Green time</Label>
+                    <Input type="number" value={this.state.intersection["listPhase"][1]["greenTime"]} onChange={this.handleChange} required  />
+
+                </Col>
+            </FormGroup>
+            <hr/>
+        </CardBody>)
+    }
+
+
   render(){
 
     return(
@@ -146,7 +191,10 @@ class ControlIntersection extends Component{
             </CardHeader>
               <Form id="card-target" style={{display: 'block'}} onSubmit={this.handleClick} encType="multipart/form-data" className="form-horizontal">
                 <br/>
+                  {this.phases()}
+
               <p style={{"font-size":'150%'}} align="center"><b>{Fields[0]}</b></p>
+
               <CreateIntersection {...this.state} index={0} onChange={this.onChange}  />
                   <hr/>
                   <p style={{"font-size":'150%'}} align="center" ><b>{Fields[1]} </b></p>

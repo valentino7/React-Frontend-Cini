@@ -3,11 +3,13 @@ export const CACHE_VALIDITY_USER_LIST = 60000; // cache validity expressed in mi
 export const CACHE_VALIDITY_TICKET_LIST = 60000; // cache validity expressed in milliseconds
 export const CACHE_VALIDITY_CONFIGFILE = 3600000; // cache validity expressed in milliseconds
 export const CACHE_VALIDITY_TEAM_LIST = 60000; // cache validity expressed in milliseconds
+export const CACHE_VALIDITY_QUERY = 6000; // cache validity expressed in milliseconds
+
 
 /* PAGINATION */
 export const RESULTS_PER_PAGE_TICKETLIST = 10;
 export const RESULTS_PER_PAGE_USERLIST = 10;
-export const RESULTS_PER_PAGE_TARGET_LIST = 5;
+export const RESULTS_PER_PAGE_TARGET_LIST = 10;
 export const RESULTS_PER_PAGE_STOPWORDS_LIST = 10;
 
 /* URLs */
@@ -39,17 +41,11 @@ export const URL_GET_DEFAULT_FIELDS="http://35.239.133.8:8081/ticketingsystem/sy
 export const URL_CREATE_TICKET='http://35.239.133.8:8081/ticketingsystem/ticket';
 
 export const  URL_CREATE_INTERSECTION= 'http://localhost:8081/sdcc/intersection/create';
-export const  URL_UPDATE_INTERSECTION= 'http://localhost:8081/sdcc/intersection/update/';
+export const  URL_UPDATE_INTERSECTION= 'http://localhost:8081/sdcc/intersection/update';
 export const URL_GET_ALL_INTERSECTION= 'http://localhost:8081/sdcc/intersection/findAll';
 export const URL_DELETE_INTERSECTION= 'http://localhost:8081/sdcc/intersection/deleteById/';
+export const URL_GET_RANKING_QUERY1= 'http://localhost:8081/sdcc/intersection/deleteById/';
 
 
-
-export const URL_CREATE_TARGET= 'http://35.239.133.8:8081/ticketingsystem/target/';
-export const URL_DELETE_TYPOLOGY='http://35.239.133.8:8081/ticketingsystem/system/configuration/deleteTypology/';
-export const URL_INSERT_FILE= 'http://35.239.133.8:8081/ticketingsystem/ticket/uploadFiles/';
-export const URL_CREATE_TYPOLOGY='http://35.239.133.8:8081/ticketingsystem/system/configuration/addTicketTypology';
-export const URL_ADD_FIELD_TO_TYPOLOGY='http://35.239.133.8:8081/ticketingsystem/system/configuration/addTypologyAdditionalField/';
-export const URL_DELETE_FIELD_TO_TYPOLOGY="http://35.239.133.8:8081/ticketingsystem/system/configuration/deleteAdditionalField/";
 
 export const URL_GET_CLUSTER = '...';

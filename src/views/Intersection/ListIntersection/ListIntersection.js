@@ -47,7 +47,8 @@ const p= [
     }
 ];
 
-const showFields = ["Show","Update","Delete"];
+const showFields = ["Phase 0: Red time","Phase 0: Green time","Phase 1: Red time","Phase 1: Green time","Show","Update","Delete"];
+const showFieldsBrokenTable = ["Intersect","Semaphore","Repair"];
 
 class ListIntersection extends PureComponent{
   constructor(props) {
@@ -55,13 +56,16 @@ class ListIntersection extends PureComponent{
     super(props);
 
     this.state = {
-      intersections: [],
-      hiddenCard: false,
-      currentPage: 1,
-      id: "",
-      typology : []
+        intersections: [],
+        trafficLight: [],
+        hiddenCard: false,
+        hiddenCardBroken:false,
+        currentPage: 1,
+        id: "",
+        typology : []
     };
     //this.state.intersections[0]["semaphor"]=[];
+    this.hiddenCardBroken = this.hiddenCardBroken.bind(this);
     this.hiddenCard = this.hiddenCard.bind(this);
     this.refreshList = this.refreshList.bind(this);
     this.onDelete = this.onDelete.bind(this);
@@ -79,7 +83,16 @@ class ListIntersection extends PureComponent{
       document.getElementById("card-list").style.display = "none";
   }
 
-  selectPage(page) {
+  hiddenCardBroken(){
+      this.setState({hiddenCardBroken: !this.state.hiddenCardBroken});
+      if(this.state.hiddenCardBroken)
+          document.getElementById("card-broken").style.display = "block";
+      else
+          document.getElementById("card-broken").style.display = "none";
+  }
+
+
+    selectPage(page) {
     this.setState({
       currentPage: page
     });
@@ -87,7 +100,7 @@ class ListIntersection extends PureComponent{
 
   selectLastPage() {
     this.setState({
-      currentPage: Math.ceil(this.state.targets.length / RESULTS_PER_PAGE_TARGET_LIST)
+      currentPage: Math.ceil(this.state.intersections.length / RESULTS_PER_PAGE_TARGET_LIST)
     });
   }
 
@@ -138,12 +151,19 @@ class ListIntersection extends PureComponent{
         this.setState({intersections: res });
       });
 
+
+
       //this.setState({intersections:res});
   }
 
 
   onUpdate(updateIntersection) {
-      fetch((URL_UPDATE_INTERSECTION+ updateIntersection["id"]), {
+      console.log(updateIntersection);
+      console.log(updateIntersection["id"]);
+      console.log(updateIntersection["sensorList"][0]);
+
+
+      fetch((URL_UPDATE_INTERSECTION), {
           method: 'PUT',
           body: JSON.stringify({
               updateIntersection
@@ -163,9 +183,7 @@ class ListIntersection extends PureComponent{
                   }
               );
           }
-
       });
-
   }
 
 
@@ -192,13 +210,36 @@ class ListIntersection extends PureComponent{
     const indexOfFirstTarget = RESULTS_PER_PAGE_TARGET_LIST * (this.state.currentPage - 1);
     const indexOfLastTarget = RESULTS_PER_PAGE_TARGET_LIST * (this.state.currentPage);
 
-    let tableHeader = showFields.map(attribute => {
+    let tableHeader = showFields.map((attribute,index) => {
+        if(index>3){
+            return (
+                <th key={attribute} style={{"textAlign": "center","width":"80px"}}>{attribute}
+                </th>
+            );
+        }else{
+            return (
+                <th key={attribute} style={{"textAlign": "center"}}>{attribute}
+                </th>
+            );
+        }
 
-      return (
-        <th key={attribute} style={{"textAlign": "center"}}>{attribute}
-        </th>
-      );
     });
+
+
+      let tableHeaderBroken = showFieldsBrokenTable.map((attribute,index) => {
+          if(index>2){
+              return (
+                  <th key={attribute} style={{"textAlign": "center","width":"80px"}}>{attribute}
+                  </th>
+              );
+          }else{
+              return (
+                  <th key={attribute} style={{"textAlign": "center"}}>{attribute}
+                  </th>
+              );
+          }
+
+      });
 
     const currentTableBody = intersections.slice(indexOfFirstTarget, indexOfLastTarget);
 
@@ -214,7 +255,7 @@ class ListIntersection extends PureComponent{
               <tr>
 
                 <th width="5px"><b>#</b></th>
-                  <th ><b>Id</b></th>
+                  <th><b>Id</b></th>
 
                 {tableHeader}
 
@@ -233,6 +274,34 @@ class ListIntersection extends PureComponent{
 
           </CardBody>
         </Card>
+
+      <Card  >
+          <CardHeader>
+              <i className="fa fa-align-justify" onClick={this.hiddenCardBroken} style={{cursor:"pointer"}}/><strong>Broken sensors</strong>
+          </CardHeader>
+          <CardBody id="card-broken" style={{display: 'block'}}>
+              <Table style={{tableLayout:"fixed"}} responsive striped size="sm">
+                  <thead bgcolor="#ADD8E6">
+                  <tr>
+
+                      <th width="5px"><b>#</b></th>
+                      <th><b>Id</b></th>
+
+                      {tableHeaderBroken}
+
+                  </tr>
+                  </thead>
+
+
+              </Table>
+              <div align="center">
+                  <div style={{display:"inline-block"}}>
+                      <CustomPagination numPages={Math.ceil(this.state.intersections.length / RESULTS_PER_PAGE_TARGET_LIST)} selectPage={this.selectPage} currentPage={this.state.currentPage}/>
+                  </div>
+              </div>
+
+          </CardBody>
+      </Card>
 
       </div>
 

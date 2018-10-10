@@ -66,7 +66,7 @@ class TeamList extends Component {
          			selectField.product=selectField.product.concat(res.name);
          		})
       		})
-  }
+  };
 
   onCreate(newTeam) {
     axios(baseUrl,{

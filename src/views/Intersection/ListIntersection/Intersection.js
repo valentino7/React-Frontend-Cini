@@ -29,13 +29,30 @@ class Intersection extends Component {
     }
 
     render() {
+
         return(
             <React.Fragment>
                 <ModalConfirm toggle={this.toggle} handleDelete={this.handleDelete} modal={this.state.modal}/>
                 <tr>
+                    <td></td>
                     <td width="30px"><b>{this.props.index + 1}</b></td>
+
                     <td align="center">
+                        {this.props.intersection["listPhase"][0]["redTime"]}
                     </td>
+
+                    <td align="center">
+                        {this.props.intersection["listPhase"][0]["greenTime"]}
+                    </td>
+
+                    <td align="center">
+                        {this.props.intersection["listPhase"][1]["redTime"]}
+                    </td>
+
+                    <td align="center">
+                        {this.props.intersection["listPhase"][1]["greenTime"]}
+                    </td>
+
 
                     <td align="center">
                         <ShowIntersection intersection={this.props.intersection}/>

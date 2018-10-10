@@ -40,12 +40,12 @@ class ShowIntersection extends Component {
             <FormGroup row>
                 <Col>
                     <Label>Longitude</Label>
-                    <Input type="number" value={this.props.intersection["semaphoreList"][i]["longitude"]}  disabled="disabled"  />
+                    <Input type="number" value={this.props.intersection["sensorList"][i]["longitude"]}  disabled="disabled"  />
 
                 </Col>
                 <Col>
                     <Label>Latitude</Label>
-                    <Input type="number" value={this.props.intersection["semaphoreList"][i]["latitude"]} disabled="disabled"  />
+                    <Input type="number" value={this.props.intersection["sensorList"][i]["latitude"]} disabled="disabled"  />
 
                 </Col>
             </FormGroup>
@@ -53,24 +53,9 @@ class ShowIntersection extends Component {
                 <Col md="6">
                     <FormGroup>
                         <Label htmlFor="text-input">Saturation</Label>
-                        <Input type="number"value={this.props.intersection["semaphoreList"][i]["saturation"]}  disabled="disabled" />
+                        <Input type="number"value={this.props.intersection["sensorList"][i]["saturation"]}  disabled="disabled" />
                     </FormGroup>
                 </Col>
-                <Col md="6">
-                    <FormGroup>
-                        <Label htmlFor="text-input">Tempo rosso</Label>
-                        <Input type="number" value={this.props.intersection["semaphoreList"][i]["red"]} disabled="disabled"  />
-                    </FormGroup>
-                </Col>
-            </FormGroup>
-            <FormGroup row>
-                <Col md="6">
-                    <FormGroup>
-                        <Label htmlFor="text-input">Tempo verde</Label>
-                        <Input type="number"  value={this.props.intersection["semaphoreList"][i]["green"]}  disabled="disabled"   />
-                    </FormGroup>
-                </Col>
-
             </FormGroup>
         </CardBody>)
     }
