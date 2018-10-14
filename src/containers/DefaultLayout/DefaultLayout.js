@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
-import { Container,Col } from 'reactstrap';
+import { Container } from 'reactstrap';
 
 import {
   AppBreadcrumb,
@@ -24,7 +24,6 @@ import DefaultHeader from './DefaultHeader';
 
 import '../../assets/css/loading-animation.css';
 
-import Cluster from "../../views/Cluster/Cluster/Cluster";
 import { connect } from "react-redux";
 
 class DefaultLayout extends Component {

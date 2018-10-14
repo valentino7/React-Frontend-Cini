@@ -1,6 +1,4 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
-import { userActions } from '../../_actions/index';
 import { connect } from 'react-redux';
 import {DefaultLayout} from "../../containers";
 import { PublicRoute} from "../../_components";
@@ -22,56 +20,10 @@ class SessionContainer extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      registering: this.props.registering,
-      loggingIn: this.props.loggingIn
-    };
 
-    this.register = this.register.bind(this);
-    this.login = this.login.bind(this);
-    this.logout = this.logout.bind(this);
   }
 
-  register(user) {
-    this.props.actions.register(user);
-  }
 
-  login(username, password) {
-    this.props.actions.login(username, password);
-  }
-
-  logout() {
-    this.props.actions.logout();
-  }
-
-  /*componentWillMount() {
-    if (DEBUG_SESSIONCONTAINER_LIFECYCLE)
-      alert("SessionContainer: will mount");
-    this.props.configFileActions.getConfigFile();
-  }*/
-
-  componentDidMount() {
-    if (DEBUG_SESSIONCONTAINER_LIFECYCLE)
-      alert("SessionContainer: did mount");
-  }
-
-  componentWillUpdate(nextProps) {
-    if (DEBUG_SESSIONCONTAINER_LIFECYCLE)
-      alert("SessionContainer: will update");
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.loggingIn !== this.props.loggingIn) {
-      this.setState({ loggingIn: this.props.loggingIn });
-    }
-
-    if (prevProps.registering !== this.props.registering) {
-      this.setState({ registering: this.props.registering });
-    }
-
-    if (DEBUG_SESSIONCONTAINER_LIFECYCLE)
-      alert("SessionContainer: did update");
-  }
 
   componentWillUnmount() {
     if (DEBUG_SESSIONCONTAINER_LIFECYCLE)
@@ -79,8 +31,6 @@ class SessionContainer extends React.Component {
   }
 
   render() {
-    if (DEBUG_SESSIONCONTAINER_LIFECYCLE)
-      alert("SessionContainer: render");
 
     return(
       <React.Fragment>
@@ -101,8 +51,7 @@ class SessionContainer extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    registering: state.loading.isRegistering,
-    loggingIn: state.loading.isLoggingIn
+
   };
 }
 
