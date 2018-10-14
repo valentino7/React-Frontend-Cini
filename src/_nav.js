@@ -21,28 +21,33 @@ export default {
           url: '/intersection/ListIntersection',
           icon: 'fa fa-bullseye',
         },
+        {
+          name: 'Broken sensors',
+          url: '/intersection/ListIntersectionContainer',
+          icon: 'fa fa-bullseye',
+        },
 
       ]
     },
 
       {
           name: 'Query1',
-          url: '/QueryContainer',
+          url: '/Query1Container',
           icon: 'fa fa-bullseye',
           children: [
               {
                   name: '15 minuti',
-                  url: '/QueryContainer/QueryContainer',
+                  url: '/Query1Container/QueryRank15mContainer',
                   icon: 'fa fa-bullseye',
               },
               {
                   name: '1 ora',
-                  url: '/Query1/Minutiquindici',
+                  url: '/Query1Container/QueryRank1hContainer',
                   icon: 'fa fa-bullseye',
               },
               {
                   name: '24 ore',
-                  url: '/Query1/Minutiquindici',
+                  url: '/Query1Container/QueryRank24hContainer',
                   icon: 'fa fa-bullseye',
               },
 
@@ -50,45 +55,22 @@ export default {
       },
       {
           name: 'Query 2',
-          url: '/intersection',
+          url: '/Query2Container',
           icon: 'fa fa-bullseye',
           children: [
               {
-                  name: '15 minuti',
-                  url: '/intersection/CreateIntersection',
+                  name: '15 minutes',
+                  url: '/Query2Container/QueryContainer15m',
                   icon: 'fa fa-bullseye',
               },
               {
-                  name: '1 ora',
-                  url: '/intersection/ListIntersection',
+                  name: '1 hour',
+                  url: '/Query2Container/QueryContainer1h',
                   icon: 'fa fa-bullseye',
               },
               {
-                  name: '24 ore',
-                  url: '/intersection/ListIntersection',
-                  icon: 'fa fa-bullseye',
-              },
-
-          ]
-      },
-      {
-          name: 'Query 3',
-          url: '/intersection',
-          icon: 'fa fa-bullseye',
-          children: [
-              {
-                  name: '15 minuti',
-                  url: '/intersection/CreateIntersection',
-                  icon: 'fa fa-bullseye',
-              },
-              {
-                  name: '1 ora',
-                  url: '/intersection/ListIntersection',
-                  icon: 'fa fa-bullseye',
-              },
-              {
-                  name: '24 ore',
-                  url: '/intersection/ListIntersection',
+                  name: '24 hour',
+                  url: '/Query2Container/QueryContainer24h',
                   icon: 'fa fa-bullseye',
               },
 

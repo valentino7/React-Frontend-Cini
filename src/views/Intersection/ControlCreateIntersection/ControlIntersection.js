@@ -26,13 +26,17 @@ class ControlIntersection extends Component{
 
     this.state = {
         hiddenTarget: false,
-
+        red1:"",
+        red2:"",
+        green1:"",
+        green2:"",
         intersection:{},
         name: "",
         version: "",
         typology : [],
         typId : "",
     };
+    this.onChangePhase = this.onChangePhase.bind(this);
     this.phases = this.phases.bind(this);
     this.onChange = this.onChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -58,10 +62,11 @@ class ControlIntersection extends Component{
         for ( let i = 0 ; i< 4 ; i++)
             this.state.intersection["sensorList"][i]={"trafficLight":i};
 
-        for ( let i = 0 ; i< 4 ; i++) {
-            this.state.intersection["listPhase"][i] = {"redTime": ""};
-            this.state.intersection["listPhase"][i] = {"greenTime": ""};
-        }
+        this.state.intersection["listPhase"][0] = {"redTime": ""};
+        this.state.intersection["listPhase"][0] = {"greenTime": ""};
+        this.state.intersection["listPhase"][1] = {"redTime": ""};
+        this.state.intersection["listPhase"][1] = {"greenTime": ""};
+
         this.setState(this.state)
         //this.state.intersection["semaphor"]=[{"red":""}];
        /* this.state.ticket["sem"] = {
@@ -87,6 +92,11 @@ class ControlIntersection extends Component{
     e.preventDefault();
     console.log("SUBMIT");
     console.log(this.state.intersection["sensorList"][0]);
+    this.state.intersection["listPhase"][0]["redTime"]=this.state.red1;
+    this.state.intersection["listPhase"][0]["greenTime"]=this.state.green1;
+    this.state.intersection["listPhase"][1]["redTime"]=this.state.red2;
+    this.state.intersection["listPhase"][1]["greenTime"]=this.state.green2;
+    this.setState(this.state);
     fetch(URL_CREATE_INTERSECTION, {
       method: 'POST',
       headers: {
@@ -135,6 +145,28 @@ class ControlIntersection extends Component{
 
   }
 
+    onChangePhase(evt){
+        // this.setState({ intersection["red"] : evt.target.value });
+
+        /* this.state.intersection["semaphor"][0] = evt.target.value;
+         this.setState(this.state);*/
+
+
+
+        /*this.state.intersection["semaphor"][i]= {
+            ["red"]: this.state.red,
+            ["longitudine"]: this.state.longitudine,
+            ["latitudine"] : this.state.latitudine,
+            ["green"]: this.state.green,
+            ["saturation"]: this.state.saturation,
+
+        };*/
+        //this.setState(this.state.intersection["semaphor"][i]["red"], e );
+
+        this.setState({[evt.target.name]: evt.target.value});
+
+    }
+
   hiddenTarget(){
     this.setState({hiddenTarget: !this.state.hiddenTarget});
     if(this.state.hiddenTarget)
@@ -150,12 +182,12 @@ class ControlIntersection extends Component{
             <FormGroup row>
                 <Col>
                     <Label>Red time</Label>
-                    <Input type="number" value={this.state.intersection["listPhase"][0]["redTime"]}  onChange={this.handleChange} required   />
+                    <Input type="number" name="red1" id="number-input"  value={this.state.red1}  onChange={this.onChangePhase} required   />
 
                 </Col>
                 <Col>
                     <Label>Green time</Label>
-                    <Input type="number" value={this.state.intersection["listPhase"][0]["greenTime"]} onChange={this.handleChange} required   />
+                    <Input type="number" name="green1" id="number-input"  value={this.state.green1} onChange={this.onChangePhase} required   />
 
                 </Col>
             </FormGroup>
@@ -165,12 +197,12 @@ class ControlIntersection extends Component{
             <FormGroup row>
                 <Col>
                     <Label>Red time</Label>
-                    <Input type="number" value={this.state.intersection["listPhase"][1]["redTime"]}  onChange={this.handleChange} required  />
+                    <Input type="number" name="red2" id="number-input"  value={this.state.red2}  onChange={this.onChangePhase} required  />
 
                 </Col>
                 <Col>
                     <Label>Green time</Label>
-                    <Input type="number" value={this.state.intersection["listPhase"][1]["greenTime"]} onChange={this.handleChange} required  />
+                    <Input type="number" name="green2" id="number-input"  value={this.state.green2} onChange={this.onChangePhase} required  />
 
                 </Col>
             </FormGroup>
