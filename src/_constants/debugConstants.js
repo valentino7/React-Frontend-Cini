@@ -1,10 +1,4 @@
 export const DEBUG_ALERT_LIFECYCLE = false;
 export const DEBUG_APP_LIFECYCLE = false;
-export const DEBUG_EDITPROFILE_LIFECYCLE = false;
-export const DEBUG_EDITPROFILECONTAINER_LIFECYCLE = false;
 export const DEBUG_SESSIONCONTAINER_LIFECYCLE = false;
-export const DEBUG_USERLISTCONTAINER_LIFECYCLE = false;
-export const DEBUG_USERLIST_LIFECYCLE = false;
-export const DEBUG_USERLIST_CACHE = false;
-export const DEBUG_CONFIGFILE_CACHE = false;
 export const DEBUG_CUSTOMPAGINATION_LIFECYCLE = false;
