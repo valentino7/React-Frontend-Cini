@@ -62,6 +62,7 @@ class MinutesFifteen extends PureComponent{
                         <CardHeader> <i className="fa fa-align-justify" onClick={this.hiddenBody} style={{cursor:"pointer"}}/>
                             <strong>Medians 15 minutes</strong>
                         </CardHeader>
+                        <Form id="card-body" style={{display: 'block'}} >
                         <br/>
                         <Form >
                             <Col>
@@ -70,7 +71,7 @@ class MinutesFifteen extends PureComponent{
                             </Col>
                         </Form>
                         <hr/>
-                        <Form id="card-body" style={{display: 'block'}}  encType="multipart/form-data" className="form-horizontal">
+                        <Form  encType="multipart/form-data" className="form-horizontal">
 
                                 <TableQuery indexOfFirst={indexOfFirst} indexOfLast={indexOfLast} header={Header}  headerFields={HeaderFields} fields={this.props.elements["listMedian"]} />
                         </Form>
@@ -79,7 +80,7 @@ class MinutesFifteen extends PureComponent{
                                 <CustomPagination numPages={Math.ceil(this.props.elements["listMedian"].length / RESULTS_PER_PAGE_TARGET_LIST)} selectPage={this.selectPage} currentPage={this.state.currentPage}/>
                             </div>
                         </div>
-
+                        </Form>
                     </Card>
                 </Col>
         );
