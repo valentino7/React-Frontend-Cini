@@ -23,7 +23,7 @@ export default {
         },
         {
           name: 'Broken sensors',
-          url: '/intersection/ListIntersectionContainer',
+          url: '/intersection/SensorsContainer',
           icon: 'fa fa-bullseye',
         },
 
@@ -73,6 +73,43 @@ export default {
                   url: '/Query2Container/QueryContainer24h',
                   icon: 'fa fa-bullseye',
               },
+
+          ]
+      },
+      {
+          name: 'Query 2',
+          url: '/Query2Container',
+          icon: 'fa fa-bullseye',
+          children: [
+              {
+                  name: '15 minutes',
+                  url: '/Query2Container/QueryContainer15m',
+                  icon: 'fa fa-bullseye',
+              },
+              {
+                  name: '1 hour',
+                  url: '/Query2Container/QueryContainer1h',
+                  icon: 'fa fa-bullseye',
+              },
+              {
+                  name: '24 hour',
+                  url: '/Query2Container/QueryContainer24h',
+                  icon: 'fa fa-bullseye',
+              },
+
+          ]
+      },
+      {
+          name: 'Statistics',
+          url: '/Statistics',
+          icon: 'fa fa-bullseye',
+          children: [
+              {
+                  name: 'Statistics',
+                  url: '/Statistics/Statistics',
+                  icon: 'fa fa-bullseye',
+              },
+
 
           ]
       },

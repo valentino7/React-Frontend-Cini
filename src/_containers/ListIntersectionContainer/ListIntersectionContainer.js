@@ -2,10 +2,10 @@ import React from 'react';
 import {bindActionCreators} from "redux";
 import { connect } from 'react-redux';
 import {listIntersectionActions} from "../../_actions";
-import BrokenSensors from "../../views/Intersection/BrokensSensors/BrokenSensors";
 import {
-    TIMEOUT_REQUEST_BROKEN_SENSORS
+    TIMEOUT_REQUEST_INTERSECTIONS
 } from '../../_constants/configurationConstants';
+import ListIntersection from "../../views/Intersection/ListIntersection";
 
 class ListIntersectionContainer extends React.Component {
     constructor(props) {
@@ -13,7 +13,7 @@ class ListIntersectionContainer extends React.Component {
 
         this.state = {
 
-            sensors: [],
+            intersections: [],
         };
 
         /* Binding */
@@ -28,26 +28,25 @@ class ListIntersectionContainer extends React.Component {
 
     getElements(){
         // if (!this.props.isValid ){
-        this.setState({sensors:this.props.actions.getSensors()});
+        this.props.actions.getIntersections();
         // }
     }
 
     componentWillMount() {
         this.getElements();
-        this.interval = setInterval(() => this.getElements(), TIMEOUT_REQUEST_BROKEN_SENSORS);
+        this.interval = setInterval(() => this.getElements(), TIMEOUT_REQUEST_INTERSECTIONS);
 
         //this.getElements();
     }
 
 
     render() {
-        console.log("container"+this.props.sensors);
         return(
             <React.Fragment>
                 {this.props.loading ? <div className="loading">Loading</div> : null}
                     {
-                        typeof(this.props.sensors) !== 'undefined'   ?
-                            <BrokenSensors stateTrafficLight={this.props.sensors} getElement={this.getElements} />:
+                        typeof(this.props.intersections) !== 'undefined'   ?
+                            <ListIntersection intersections={this.props.intersections} getElement={this.getElements} />:
                             <div/>
                     }
                 }
@@ -59,9 +58,8 @@ class ListIntersectionContainer extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        sensors: state.sensors.sensors,
-        isValid: state.sensors.isValid,
-        loading: state.sensors.loading,
+        intersections: state.intersections.intersections,
+        loading: state.intersections.loading,
     };
 }
 

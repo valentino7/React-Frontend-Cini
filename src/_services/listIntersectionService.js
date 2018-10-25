@@ -1,8 +1,8 @@
 
-import {URL_GET_ALL_SENSOR_BROKEN} from "../_constants/configurationConstants";
+import {URL_GET_ALL_SENSOR_BROKEN,URL_GET_ALL_INTERSECTION} from "../_constants/configurationConstants";
 
 export const listIntersectionService = {
-    getSensors,
+    getSensors,getIntersections,
 
 };
 
@@ -19,6 +19,24 @@ function getSensors() {
 
 
 function handleResponse(response) {
+    if (!response.ok) {
+        return Promise.reject(response.statusText);
+    }
+
+    return response.json();
+}
+
+
+function getIntersections() {
+    const requestOptions = {
+        method: 'GET',
+    };
+    return fetch(URL_GET_ALL_INTERSECTION).then(handleResponseIntersections);
+}
+
+
+
+function handleResponseIntersections(response) {
     if (!response.ok) {
         return Promise.reject(response.statusText);
     }

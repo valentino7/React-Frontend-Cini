@@ -8,7 +8,9 @@ import {median24h} from './query24hReducer';
 import {mean15m} from './queryRank15mReducer';
 import {mean24h} from './queryRank24hReducer';
 import {mean1h} from './queryRank1hReducer';
-import { sensors } from './listIntersectionReducer';
+import { sensors } from './listSensorsReducer';
+import { statistics } from './statisticsQuery1Reducer';
+import { intersections } from './listIntersectionsReducer';
 
 
 const rootReducer = combineReducers({
@@ -19,7 +21,9 @@ const rootReducer = combineReducers({
     elements,
     median24h,
     median1h,
+    intersections,
     mean15m,
+    statistics,
     mean1h,
     mean24h,
     loading,

@@ -34,8 +34,11 @@ class Intersection extends Component {
             <React.Fragment>
                 <ModalConfirm toggle={this.toggle} handleDelete={this.handleDelete} modal={this.state.modal}/>
                 <tr>
-                    <td></td>
                     <td width="30px"><b>{this.props.index + 1}</b></td>
+
+                    <td align="center">
+                        {this.props.intersection["idIntersection"]}
+                    </td>
 
                     <td align="center">
                         {this.props.intersection["listPhase"][0]["redTime"]}

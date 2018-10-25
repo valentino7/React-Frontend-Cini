@@ -12,8 +12,8 @@ import {
     Col,
     Form,
 } from 'reactstrap';
-import { URL_GET_ADDS_FIELDS,URL_CREATE_INTERSECTION} from '../../../_constants/configurationConstants';
-import {NotificationContainer, NotificationManager} from 'react-notifications';
+import { URL_CREATE_INTERSECTION} from '../../../_constants/configurationConstants';
+import { NotificationManager} from 'react-notifications';
 
 const Fields =
     ["NORD SEMAPHORE", "SUD SEMAPHORE", "OVEST SEMAPHORE", "EST SEMAPHORE"];

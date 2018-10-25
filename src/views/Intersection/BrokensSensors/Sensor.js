@@ -18,7 +18,6 @@ class Sensor extends Component {
         return(
             <React.Fragment>
                 <tr>
-                    <td></td>
                     <td width="30px"><b>{this.props.index + 1}</b>
                     </td>
 

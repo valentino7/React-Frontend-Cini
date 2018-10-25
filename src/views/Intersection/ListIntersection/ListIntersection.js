@@ -47,7 +47,7 @@ const p= [
     }
 ];
 
-const showFields = ["Phase 0: Red time","Phase 0: Green time","Phase 1: Red time","Phase 1: Green time","Show","Update","Delete"];
+const showFields = ["id Intersection","Phase 0: Red time","Phase 0: Green time","Phase 1: Red time","Phase 1: Green time","Show","Update","Delete"];
 
 class ListIntersection extends PureComponent{
   constructor(props) {
@@ -86,12 +86,12 @@ class ListIntersection extends PureComponent{
 
   selectLastPage() {
     this.setState({
-      currentPage: Math.ceil(this.state.intersections.length / RESULTS_PER_PAGE_TARGET_LIST)
+      currentPage: Math.ceil(this.props.intersections.length / RESULTS_PER_PAGE_TARGET_LIST)
     });
   }
 
   refreshList() {
-    fetch(URL_GET_ALL_INTERSECTION, {
+   /* fetch(URL_GET_ALL_INTERSECTION, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -100,12 +100,14 @@ class ListIntersection extends PureComponent{
     }).then((response) => response.json())
       .then(res => {
         this.setState({intersections: res });
-      });
+      });*/
+      this.props.getElement();
+
 
   }
 
   onDelete(intersection) {
-    fetch((URL_DELETE_INTERSECTION+ intersection.id), {
+    fetch((URL_DELETE_INTERSECTION+ intersection.idIntersection), {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',
@@ -117,7 +119,7 @@ class ListIntersection extends PureComponent{
         this.refreshList();
       } else{
         response.json().then((r)=>{
-            this.createNotification("alert-danger",r.title,r.text);
+            this.createNotification("alert-danger","FAILED TO DELETE","Intersection has not being delete");
           }
         );
       }
@@ -125,7 +127,7 @@ class ListIntersection extends PureComponent{
 
   }
 
-  componentDidMount() {
+ /* componentDidMount() {
 
     fetch(URL_GET_ALL_INTERSECTION, {
       method: 'GET',
@@ -137,7 +139,7 @@ class ListIntersection extends PureComponent{
       .then(res => {
         this.setState({intersections: res });
       });
-  }
+  }*/
 
 
   onUpdate(updateIntersection) {
@@ -154,9 +156,10 @@ class ListIntersection extends PureComponent{
           if (response.ok) {
               this.createNotification("alert-success","INTERSECTION UPDATED","Intersection has been successfully updated");
               this.refreshList();
+
           } else{
               response.json().then((r)=>{
-                      this.createNotification("alert-danger",r.title,r.text);
+                      this.createNotification("alert-danger","FAILED TO DELETE","Intersection has not being delete");
                   }
               );
           }
@@ -181,7 +184,7 @@ class ListIntersection extends PureComponent{
 
   render() {
 
-    let intersections = this.state.intersections.map((intersection,index)=>
+    let intersections = this.props.intersections.map((intersection,index)=>
         <Intersection key={intersection.id} intersection={intersection} index={index} onUpdate={this.onUpdate}  onDelete={this.onDelete} refreshList={this.refreshList}  />
     );
 
@@ -190,7 +193,7 @@ class ListIntersection extends PureComponent{
 
 
       let tableHeader = showFields.map((attribute,index) => {
-        if(index>3){
+        if(index>4){
             return (
                 <th key={attribute} style={{"textAlign": "center","width":"80px"}}>{attribute}
                 </th>
@@ -215,8 +218,7 @@ class ListIntersection extends PureComponent{
               <thead bgcolor="#ADD8E6">
               <tr>
 
-                <th width="5px"><b>#</b></th>
-                  <th><b>Id</b></th>
+                <th width="40px"><b>#</b></th>
 
                 {tableHeader}
 
@@ -229,7 +231,7 @@ class ListIntersection extends PureComponent{
             </Table>
             <div align="center">
               <div style={{display:"inline-block"}}>
-                <CustomPagination numPages={Math.ceil(this.state.intersections.length / RESULTS_PER_PAGE_TARGET_LIST)} selectPage={this.selectPage} currentPage={this.state.currentPage}/>
+                <CustomPagination numPages={Math.ceil(this.props.intersections.length / RESULTS_PER_PAGE_TARGET_LIST)} selectPage={this.selectPage} currentPage={this.state.currentPage}/>
               </div>
             </div>
 

@@ -127,8 +127,7 @@ class BrokenSensors extends PureComponent{
                                 <thead bgcolor="#ADD8E6">
                                 <tr>
 
-                                    <th width="5px"><b>#</b></th>
-                                    <th><b>Id</b></th>
+                                    <th width="40px"><b>#</b></th>
 
                                     {tableHeaderBroken}
 

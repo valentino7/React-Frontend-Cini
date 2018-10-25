@@ -22,12 +22,12 @@ const CreateIntersection = Loadable({
 });
 
 const Intersection = Loadable({
-  loader: () => import('./views/Intersection/ListIntersection/ListIntersection'),
+  loader: () => import('./_containers/ListIntersectionContainer/ListIntersectionContainer'),
   loading: Loading,
 });
 
 const Sensors = Loadable({
-    loader: () => import('./_containers/ListIntersectionContainer/ListIntersectionContainer'),
+    loader: () => import('./_containers/ListIntersectionContainer/SensorsContainer'),
     loading: Loading,
 });
 
@@ -61,12 +61,18 @@ const QueryRank24h = Loadable({
     loading: Loading,
 });
 
+const Statistics = Loadable({
+    loader: () => import('./_containers/StatisticsContainer/StatisticsContainerQuery1'),
+    loading: Loading,
+});
+
+
 
 const routes = [
   { path: '/', exact: true, name: 'Home', component: DefaultLayout },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/intersection/CreateIntersection', name: 'Create target', component: CreateIntersection },
-  { path: '/intersection/ListIntersectionContainer', ecxactname: 'Broken sensors', component: Sensors },
+  { path: '/intersection/SensorsContainer', ecxactname: 'Broken sensors', component: Sensors },
   { path: '/intersection/ListIntersection', ecxactname: 'Show intersections', component: Intersection },
 
   { path: '/Query2Container/QueryContainer15m', ecxactname: '15 minutes', component: Query2FifteenM },
@@ -74,7 +80,7 @@ const routes = [
   { path: '/Query2Container/QueryContainer24h', ecxactname: '24 hour', component: Query2TwentyFourH },
   { path: '/Query1Container/QueryRank15mContainer', ecxactname: '15 minutes', component: QueryRank15m },
   { path: '/Query1Container/QueryRank1hContainer', ecxactname: '1 hour', component: QueryRank1h },
-  { path: '/Query1Container/QueryRank24hContainer', ecxactname: '24 hour', component: QueryRank24h },
+    { path: '/Statistics/Statistics', ecxactname: 'Statistics', component: Statistics },
 
 ];
 
