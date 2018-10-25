@@ -359,6 +359,7 @@ function getStatistics() {
             );
 
         statisticsService.getStatisticsTop2()
+
             .then(
 
                 statisticsTop2=>{
