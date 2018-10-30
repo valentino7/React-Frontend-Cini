@@ -77,8 +77,11 @@ const routes = [
 
   { path: '/Query2Container/QueryContainer15m', ecxactname: '15 minutes', component: Query2FifteenM },
   { path: '/Query2Container/QueryContainer1h', ecxactname: '1 hour', component: Query2OneH },
-  { path: '/Query2Container/QueryContainer24h', ecxactname: '24 hour', component: Query2TwentyFourH },
-  { path: '/Query1Container/QueryRank15mContainer', ecxactname: '15 minutes', component: QueryRank15m },
+    { path: '/Query2Container/QueryContainer24h', ecxactname: '24 hour', component: Query2TwentyFourH },
+
+    { path: '/Query1Container/QueryRank24hContainer', ecxactname: '24 hour', component: QueryRank24h },
+
+    { path: '/Query1Container/QueryRank15mContainer', ecxactname: '15 minutes', component: QueryRank15m },
   { path: '/Query1Container/QueryRank1hContainer', ecxactname: '1 hour', component: QueryRank1h },
     { path: '/Statistics/Statistics', ecxactname: 'Statistics', component: Statistics },
 
