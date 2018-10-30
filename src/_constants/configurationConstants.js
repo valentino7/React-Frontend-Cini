@@ -21,3 +21,4 @@ export const URL_GET_MEANS_QUERY1= 'http://localhost:8081/sdcc/Rank/findAll/';
 
 export const URL_GET_STATISTICS_TOP1= 'http://localhost:8081/api/v1/topology/:id';
 export const URL_GET_STATISTICS_TOP2= 'http://localhost:8081/api/v1/topology/:id';
+export const INSERT_STATISTICS= 'http://localhost:8081/sdcc/statistics/insertElement/';
