@@ -67,7 +67,6 @@ class Statistics extends PureComponent{
             </tbody>
 
         );*/
-        console.log(this.props.statistics["emitted"]);
 
         return(
             <Col md="9">

@@ -50,7 +50,7 @@ class SensorsContainer extends React.Component {
                         <BrokenSensors stateTrafficLight={this.props.sensors} getElement={this.getElements} />:
                         <div/>
                 }
-                }
+
 
             </React.Fragment>
         );

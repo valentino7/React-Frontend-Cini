@@ -121,7 +121,6 @@ class BrokenSensors extends PureComponent{
                     <CardHeader>
                         <i className="fa fa-align-justify" onClick={this.hiddenCardBroken} style={{cursor:"pointer"}}/><strong>Broken sensors</strong>
                     </CardHeader>
-                    {typeof(this.props.stateTrafficLight[0]) !== 'undefined'   ?
                         <CardBody id="card-broken" style={{display: 'block'}}>
                             <Table style={{tableLayout:"fixed"}} responsive striped size="sm">
                                 <thead bgcolor="#ADD8E6">
@@ -145,9 +144,6 @@ class BrokenSensors extends PureComponent{
                             </div>
 
                         </CardBody>
-                        : <div/>
-                    }
-
                 </Card>
 
             </div>

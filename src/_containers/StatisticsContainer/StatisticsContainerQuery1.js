@@ -14,6 +14,8 @@ class StatisticsContainerQuery1 extends React.Component {
         /* Binding */
 
         this.getElements=this.getElements.bind(this);
+        this.insertElements=this.insertElements.bind(this);
+
     }
 
     componentWillUnmount() {
@@ -27,9 +29,14 @@ class StatisticsContainerQuery1 extends React.Component {
         // }
     }
 
+    insertElements(){
+        this.props.actions.insert(0,this.props.statistics[0]["CompleteLatency"],this.props.statistics[0]["emitted"]);
+    }
+
     componentWillMount() {
         this.getElements();
         this.interval = setInterval(() => this.getElements(), TIMEOUT_REQUEST_STATISTICS_QUERY1);
+        this.interval = setInterval(() => this.insertElements(), TIMEOUT_REQUEST_STATISTICS_QUERY1);
 
         //this.getElements();
     }
@@ -45,7 +52,7 @@ class StatisticsContainerQuery1 extends React.Component {
                         <Statistics statistics={this.props.statistics} />:
                         <div/>
                 }
-                }
+
 
             </React.Fragment>
         );

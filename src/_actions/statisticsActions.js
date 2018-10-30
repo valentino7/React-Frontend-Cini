@@ -3,7 +3,7 @@ import {statisticsService} from '../_services';
 import {statisticsConstants} from "../_constants/statisticsConstants";
 
 export const statisticsActions = {
-    getStatistics
+    getStatistics,insert
 };
 
 const stat= {
@@ -162,9 +162,6 @@ const stat= {
     },
     "replicationCount": 1
 };
-
-
-
 const stat1= {
     "name": "WordCount3",
     "id": "WordCount3-1-1402960825",
@@ -322,6 +319,24 @@ const stat1= {
     "replicationCount": 1
 };
 
+function insert(query,latency,emitted) {
+
+    return dispatch => {
+        statisticsService.insertStatistics(query, latency, emitted)
+            .then(
+                error => {
+                    dispatch(failure(error));
+                    dispatch(alertActions.error(error));
+                }
+            );
+
+        function failure(error) {
+            return {type: statisticsConstants.CREATE_FAILURE_INSERT, error}
+        }
+    };
+}
+
+
 function getStatistics() {
 
     return dispatch => {
@@ -331,10 +346,7 @@ function getStatistics() {
         //statistics[1]=stat1["topologyStats"][3];
         //
         // console.log(statistics);
-        dispatch(success(statistics));
-
-
-
+       // dispatch(success(statistics));
 
         statisticsService.getStatisticsTop1()
             .then(
@@ -343,13 +355,20 @@ function getStatistics() {
                     //dispatch(success(statisticsTop1));
                     statistics[0]=statisticsTop1["topologyStats"][3];
 
-                    statisticsService.insertStatistics(0,statistics[0]["latency"],statistics[0]["emitted"])
-                    .then(
-                        error => {
-                            dispatch(failure(error));
-                            dispatch(alertActions.error(error));
-                        }
-                    );
+                    statisticsService.getStatisticsTop2()
+                        .then(
+
+                            statisticsTop2=>{
+                                statistics[1]=statisticsTop2["topologyStats"][3];
+                                dispatch(success(statistics));
+                            },
+                            error => {
+                                dispatch(failure(error));
+                                dispatch(alertActions.error(error));
+                            }
+                        );
+
+
 
                 },
                 error => {
@@ -358,26 +377,8 @@ function getStatistics() {
                 }
             );
 
-        statisticsService.getStatisticsTop2()
 
-            .then(
 
-                statisticsTop2=>{
-                    statistics[1]=statisticsTop2["topologyStats"][3];
-                      statisticsService.insertStatistics(1,statistics[1]["latency"],statistics[1]["emitted"])
-                    .then(
-                        error => {
-                            dispatch(failure(error));
-                            dispatch(alertActions.error(error));
-                        }
-                    );
-                    dispatch(success(statistics));
-                },
-                error => {
-                    dispatch(failure(error));
-                    dispatch(alertActions.error(error));
-                }
-            );
 
     };
     function request() { return { type: statisticsConstants.CREATE_REQUEST_TOP1 } }
