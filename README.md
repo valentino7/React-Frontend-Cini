@@ -2,7 +2,7 @@
 
 A simple react frontend for the Cini Storm Project. This BackEnd takes the data from the Spring Backend and renders it to the client.
 
-### Framework
+### Frameworks
 
 - React 
 - Redux (timed Backend HTTP Request )
