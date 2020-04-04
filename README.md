@@ -1,4 +1,4 @@
-# Cini Project BackEnd in Spring
+# Cini Project Frontend in React
 
 A simple react frontend for the Cini Storm Project. This BackEnd takes the data from the Spring Backend and renders it to the client.
 
